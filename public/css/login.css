@@ -1,0 +1,37 @@
+.login {
+    margin: 90px auto;
+    border: 1px solid gainsboro;
+    padding: 45px;
+    width: 32%;
+    border: 2px solid #e2e2e2;
+    padding: 20px 45px;
+    box-shadow: 0 0 17px -4px #000;
+}
+button {
+    color: #fff;
+    background-color: #16304b !important;
+    border-color: #539ce8 !important;
+    font-size: 14px;
+    box-shadow: 0 10px 14px -2px #000;
+    font-size: 14px;
+}
+label {
+    font-weight: bold;
+    font-size: 12px;
+}
+.form-control:focus {
+    box-shadow: none !important;
+    border-color: #67805a !important;
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .login {
+        width: 50%;
+    }
+}
+
+@media (max-width: 575px) {
+    .login {
+        width: 90%;
+    }
+}

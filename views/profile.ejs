@@ -1,0 +1,417 @@
+<%- include('include/start.ejs') %>
+<%- include('include/header.ejs') %>
+
+<% if (profile) { %>
+    <div class="container emp-profile">
+      
+
+        <form method="post">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <img src="" alt="db image" id="profImg"/>
+                        <div class="file btn btn-lg btn-primary" id="beforeImg">
+                            Change Photo
+                            <input type="file" name="file" id="upload"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="profile-head">
+                                <h5>
+                                    <%= profile.FullName %>
+                                </h5>
+                                  <h6>Account No: <%= profile.Accno %></h6>  
+                                <p class="proile-rating">Bank : <span><%= profile.Bank %></span></p>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                            </li>
+                            <!-- <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <ul class="list-group">
+                        <li class="list-group-item border-0">
+                           <a class="prof" data-toggle="modal" data-target="#myModal">Edit Profile</a>
+                        </li>
+                        <li class="list-group-item border-0">
+                            <a class="prof" id="delete">Delete Profile</a>
+                         </li>
+                    </ul>
+                   
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4"></div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>User Id</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><%= profile.Username %></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Name</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><%= profile.FullName %></p>
+                                        </div>
+                                    </div>                                   
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Phone</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><%= profile.Phone %></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Country</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><%= profile.Country %></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><%= profile.State %></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>City</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><%= profile.City %></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Pincode</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p><%= profile.Pincode %></p>
+                                        </div>
+                                    </div>
+                                    
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Experience</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Expert</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Hourly Rate</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>10$/hr</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Total Projects</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>230</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>English Level</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Expert</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Availability</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>6 months</p>
+                                        </div>
+                                    </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Your Bio</label><br/>
+                                    <p>Your detail description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>           
+    </div>
+
+    <div class="container">
+        <!-- <h2>Fading Modal</h2>
+        <p>Add the "fade" class to the modal container if you want the modal to fade in on open and fade out on close.</p>
+       -->
+       
+      
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">           
+           
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                  <h5 class="text-center updation">Profile Updation</h5>
+                  <form class="pt-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="name">FullName </label>
+                                <input type="text" class="form-control" value="<%= profile.FullName %>" name="fullname" id="name">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="count">Country</label>
+                                <input type="text" class="form-control" value="<%= profile.Country %>" name="country" id="count">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="st">State </label>
+                                <input type="text" class="form-control" value="<%= profile.State %>" name="state" id="st">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="cit">City </label>
+                                <input type="text" class="form-control" value="<%= profile.City %>" name="city" id="cit">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">                       
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="pin">Pincode </label>
+                                <input type="text" class="form-control" value="<%= profile.Pincode %>" name="pincode" id="pin">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="ph">Phone</label>
+                                <input type="text" class="form-control" value="<%= profile.Phone %>" name="phone" id="ph">
+                            </div>    
+                        </div>
+                    </div>
+                  </form>
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" id="update">Update</button>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+<% } %>
+<%- include('include/end.ejs') %>
+
+<script>
+    $(document).ready(() => {
+        
+        function blobToFile(theBlob, fileName){
+            if(theBlob) {
+                const file =  new File([theBlob], fileName, { lastModified: new Date().getTime(), type:'image/jpeg' })
+                if(file) {                    
+                    let reader = new FileReader();    
+                    reader.onload = function(e) {
+                    console.log(e.target)                       
+                        $('#profImg').attr('src', e.target.result.replace(' ', ''));
+                    }
+                    reader.readAsDataURL(file); // convert to base64 string
+                    console.log(file);
+                } 
+               
+
+            } else {
+                $('#profImg').attr('src', '/profile.gif');
+                // $('#profImg').before('<img src="/profile.gif" alt="" />')
+            }
+        }
+        const len = '<%= profImg.length %>';
+        if(len > 0) {
+            // alert(len);
+            blobToFile('<%= profImg[0]?.img %>', '<%= profImg[0]?.name %>');     
+        } else {
+            $('#profImg').attr('src', '/profile.gif');
+        }
+        
+
+        $('#upload').change((e) => {
+            const length = '<%= profImg.length%>';
+            var fd = new FormData();
+            var files = e.currentTarget.files[0];          
+            console.log(files);        
+            fd.append('dbImg', parseInt(length) === 0 ? 'upload' : 'update');
+            fd.append('photos', files, files.name);
+           
+            // const obj = {
+            //     img: files,
+            //     dbImg: parseInt(length) === 0 ? 'upload' : 'update'
+            // }
+            
+                    
+                    var reader = new FileReader();
+    
+                    reader.onload = function(e) {
+                        $('#profImg').attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(files); // convert to base64 string
+            
+
+            // if(files.type.includes('image')) {
+            //     $.ajax({
+            //     type: 'POST',               
+            //     url: '/profile/upload/' + window.location.pathname.split('/')[2],                      
+            //     data: fd,
+            //     processData: false,
+            //     contentType: false,
+            //     success: function(data) {
+            //        if(data === 'success') {
+            //            alert('');
+            //            window.location.href = '/profile/' + window.location.pathname.split('/')[2];
+            //        } else {
+            //            alert("Something went wrong. Please try again later...");
+            //        }
+            //     },
+            //     error: function() {
+            //         alert("Something went wrong. Please try again later...");
+            //     }
+            //     }); 
+            // } else {
+            //     alert('File not supported');
+            // }
+        });
+
+        validateInputFields = (userData) => {     
+            var testNumber = /^[0-9]+$/;
+            
+            if (userData.fullname.length === 0) {               
+                $('#name').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.country.length === 0) {
+                $('#count').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.state.length === 0) {
+                $('#st').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.city.length === 0) {
+                $('#cit').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.pincode.length === 0) {
+                $('#pin').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.pincode.length != 6) {
+                $('#pin').after('<div class="err">Must have 6 digits</div>');
+                return false;
+            } else if(!userData.pincode.match(testNumber)) {
+                $('#pin').after('<div class="err">Required digits only</div>');
+                return false;
+            } else if (userData.phone.length === 0) {
+                $('#ph').after('<div class="err">This field required</div>');
+                return false;
+            } else  if(!userData.phone.match(testNumber)) {
+                 $('#ph').after('<div class="err">Required digits only</div>');
+                 return false;
+            } else if (userData.phone.length != 10) {
+                $('#ph').after('<div class="err">Musht have 10 digits</div>');
+                return false;
+            } else {
+                return true;
+            }     
+
+        }
+
+        $('#update').click(() =>{
+
+            $('.err').remove();             
+
+            const userData = {};
+            userData.fullname   = $('#name').val();
+            userData.country    = $('#count').val();
+            userData.state      = $('#st').val();
+            userData.city       = $('#cit').val();
+            userData.pincode    = $('#pin').val();
+            userData.phone      = $('#ph').val();
+            console.log(userData);
+
+            const validated = validateInputFields(userData); // Valid input           
+
+            if(validated) {
+                $.ajax({
+                type: 'POST',
+                url: '/profile/update/' + window.location.pathname.split('/')[2],
+                data: userData,
+                success: function(data) {
+                  if(data === 'success') {
+                      alert('updated successfully');
+                      window.location.href = '/profile/' + window.location.pathname.split('/')[2];
+                  } else {
+                      alert('Something went wrong. Please try again after some time...')
+                  }
+                },
+                error: function() {}
+                });
+            }              
+
+        });
+
+        $('#delete').click(() => {            
+            const confirmDetlet = confirm('Are you sure you want to delete account?');
+            if(confirmDetlet) {
+                $.ajax({
+                type: 'POST',
+                url: '/profile/delete/' + window.location.pathname.split('/')[2],
+                // data: userData,
+                success: function(data) {
+                   if(data === 'success') {
+                       alert("Successfully deleted your account")
+                       sessionStorage.removeItem('user');
+                       window.location.href = '/';
+                   } else {
+                       alert("Something went wrong. Please try again later...");
+                   }
+                },
+                error: function() {}
+                }); 
+            }
+        });
+
+
+
+    });
+</script>

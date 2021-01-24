@@ -1,0 +1,203 @@
+<%- include('include/start.ejs') %>
+<%- include('include/header.ejs') %>
+
+<section class="login w-50">
+
+  
+<!-- action="/register" method="POST" -->
+    <form id="registerForm">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="email">Username/Email</label>
+                    <input type="text" class="form-control" name="usr" id="username">
+                  </div>                
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="name">FullName </label>
+                    <input type="text" class="form-control" name="fullname" id="name">
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="count">Country</label>
+                    <input type="text" class="form-control" name="country" id="count">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="st">State </label>
+                    <input type="text" class="form-control" name="state" id="st">
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="cit">City </label>
+                    <input type="text" class="form-control" name="city" id="cit">
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="pin">Pincode </label>
+                    <input type="text" class="form-control" name="pincode" id="pin">
+                </div>
+            </div>
+        </div>
+       
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="ty">Type of Account </label>
+                    <select class="form-control" name="type" id="ty">
+                        <option value="">Select</option>
+                        <option value="Savings">Savings</option>
+                        <option value="Current">Current</option>
+                        <option value="Fixed">Fixed</option>
+                        <option value="Salary">Salary</option>
+                    </select>
+                    <!-- <input type="text" class="form-control" name="type" id="ty">
+                    <small>(Allowed: Savings, Current, Fixed and Salary)</small> -->
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="bankName">Bank </label>
+                    <input type="text" class="form-control" name="bank" id="bankName">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label for="ph">Phone</label>
+                    <input type="text" class="form-control" name="phone" id="ph">
+                </div>    
+            </div>
+            <div class="col">
+                <div class="form-group">
+                    <label for="pwd">Password</label>
+                    <input type="password" class="form-control" name="password" id="pwd">
+                  </div>
+            </div>
+        </div>       
+
+        <div class="text-center mt-5">
+            <button type="button" class="btn btn-primary w-50" id="submit">Register</button>
+        </div>
+    </form>
+
+    
+</section>
+
+<%- include('include/end.ejs') %>
+
+<script>
+    $(document).ready(() => {
+        
+        validateInputFields = (userData) => {     
+            var testNumber = /^[0-9]+$/;
+            
+            if ((userData.usr.length > 0 && userData.usr.length < 4) || (userData.fullname.length > 0 && userData.fullname.length < 4)) {
+                if (userData.usr.length > 0 && userData.usr.length < 4) {
+                    $('#username').after('<div class="err">Must have atleast 4 characters</div>');
+                } else {
+                    $('#name').after('<div class="err">Must have atleast 4 characters</div>');
+                }                
+                return false;
+            } else if (userData.usr.length === 0 || userData.fullname.length === 0) {
+                if (userData.usr.length === 0) {
+                    $('#username').after('<div class="err">This field required</div>');
+                } else {
+                    $('#name').after('<div class="err">This field required</div>');
+                }
+                return false;
+            } else if (userData.country.length === 0) {
+                $('#count').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.state.length === 0) {
+                $('#st').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.city.length === 0) {
+                $('#cit').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.pincode.length === 0) {
+                $('#pin').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.pincode.length != 6) {
+                $('#pin').after('<div class="err">Must have 6 digits</div>');
+                return false;
+            } else if(!userData.pincode.match(testNumber)) {
+                $('#pin').after('<div class="err">Required digits only</div>');
+                return false;
+            } else if (userData.type.length === 0) {
+                $('#ty').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.bank.length === 0) {
+                $('#bankName').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.phone.length === 0) {
+                $('#ph').after('<div class="err">This field required</div>');
+                return false;
+            } else  if(!userData.phone.match(testNumber)) {
+                 $('#ph').after('<div class="err">Required digits only</div>');
+                 return false;
+            } else if (userData.phone.length != 10) {
+                $('#ph').after('<div class="err">Musht have 10 digits</div>');
+                return false;
+            } else if (userData.password.length === 0) {
+                $('#pwd').after('<div class="err">This field required</div>');
+                return false;
+            } else if (userData.password.length < 4) {
+                $('#pwd').after('<div class="err">Must have atleast 4 characters</div>');
+                return false;
+            } else {
+                return true;
+            }     
+
+        }
+
+        $('#submit').click(() =>{
+
+            $('.err').remove(); 
+              
+
+            const userData = {};
+            userData.usr        = $('#username').val();
+            userData.fullname   = $('#name').val();
+            userData.country    = $('#count').val();
+            userData.state      = $('#st').val();
+            userData.city       = $('#cit').val();
+            userData.pincode    = $('#pin').val();
+            userData.type       = $('#ty').val();
+            userData.bank       = $('#bankName').val();
+            userData.phone      = $('#ph').val();
+            userData.password   = $('#pwd').val();            
+            console.log(userData);
+
+            const validated = validateInputFields(userData); // Valid input           
+
+            if(validated) {
+                $.ajax({
+                type: 'POST',
+                url: '/register',
+                data: userData,
+                success: function(data) {
+                    alert(data);
+                    $('#registerForm').find('input').val('')
+                    window.location.href = '/login';
+                },
+                error: function() {}
+                });
+            }              
+            
+        })
+    })
+</script>

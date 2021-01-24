@@ -1,0 +1,30 @@
+.navbar-nav {
+    position: absolute;
+    right: 25px;
+}
+.navbar-nav a {
+    color: #cecdc7;
+}
+.navbar-nav a:hover {
+    color: #ffffff;
+}
+.navbar {
+    background-color: #16304b;
+    box-shadow: 0 0 18px 3px #ffffff;
+}
+.navbar-brand {
+    color: #c7d0dd !important;
+    font-weight: bold;
+    font-size: 20px !important;
+}
+
+.bgImg {
+    background: url(../img/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.userClick {
+    cursor: pointer;
+}

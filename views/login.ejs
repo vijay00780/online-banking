@@ -1,0 +1,76 @@
+<%- include('include/start.ejs') %>
+<%- include('include/header.ejs') %>
+
+<section class="login" id="showLogin">
+
+    <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Username/Email</label>
+          <input type="text" class="form-control" name="usr" id="username">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Password</label>
+          <input type="password" class="form-control" name="password" id="pwd">
+          
+        </div>
+        <div class="text-center mt-5">
+            <button type="button" class="btn btn-primary w-50" id="submit">Login</button>
+        </div>
+      </form>
+
+      <div class="pt-2 text-center">
+        <div>Not a user? <a href="/register">Register</a></div>
+      </div>
+</section>
+
+<%- include('include/end.ejs') %>
+
+
+<script>
+  $(document).ready(() => {
+    $('#showLogin').css('display', 'none');
+    if(sessionStorage.getItem('user')) {
+      window.location.href = '/';
+    } else {
+      $('#showLogin').css('display', 'block');
+    }
+
+    $('#submit').click(() => {
+        $('.err').remove();
+
+        let validated = false;
+
+        const userData = {};
+        userData.usr        = $('#username').val();
+        userData.password   = $('#pwd').val();      
+        
+        console.log(userData);
+
+        if(userData.password.length < 4) {
+          $('#pwd').after('<div class="err">Must be atleast 4 characters</div>');          
+        } else {
+          validated = true;
+        }
+
+        if (validated) {
+          $.ajax({
+            type: 'POST',
+            url: '/login',
+            data: userData,
+            success: function(data) {
+              if(data) {
+                if(data.msg === 'success') {
+                  sessionStorage.setItem("user", true);
+                  window.location.href = '/profile/' + data.id;
+                } else {
+                  // $('#loginForm').find('input').val('');
+                  alert('Email or Password Incorrect. Please register if not a user');
+                }
+              }                
+            },
+            error: function() {}
+            });
+        }        
+    })
+  });
+</script>

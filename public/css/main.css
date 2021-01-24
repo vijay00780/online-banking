@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #fff;
+    font-family: 'Roboto' !important;   
+  }
+
+.bgImg {
+    background: url(../img/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+label {
+    font-weight: 600;
+}
+.home {
+  position: relative;
+}
+.home div{
+  top: 106px;
+  color: #c3c3c3;
+  padding: 25px;
+}
+.err {
+  color: red;
+  font-size: 12px;
+}
+
+@media (min-width: 100px) and (max-width: 767px) {
+  .home {
+    position: absolute !important;
+    bottom: 0;
+  }
+  .home div {
+    color: #ffffff !important;
+    top: 0;
+    padding: 10px;
+  }
+}
