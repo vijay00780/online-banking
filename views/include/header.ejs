@@ -12,16 +12,26 @@
 
   <script>
     $(document).ready(() => {
-      if(!sessionStorage.getItem('user')) $('.usr').after(' <a class="nav-link userClick" href="/login">Login</a>');
-      else $('.usr').after(' <a class="nav-link userClick" id="logoutUsr" >Logout</a>');
+      if(!sessionStorage.getItem('user')) {
+        $('.usr').after(' <a class="nav-link userClick" href="/login">Login</a>');
+      } 
+      else {       
+        $('.usr').after(' <a class="nav-link userClick" id="logoutUsr" >Logout</a>');
+        if(window.location.pathname === '/') {
+         $('.usr').after(' <a class="nav-link userClick" id="profile" >Profile</a>');
+        }
+      }
 
       $('.userClick').click((e) => {
         if(e.currentTarget.innerText.toLowerCase() === 'logout') {
           const getConfirm = confirm('Are you sure you want to logout?');
           if (getConfirm) {
             sessionStorage.removeItem('user');
+            sessionStorage.removeItem('id');
             window.location.href = '/'; 
           }         
+        } else if (e.currentTarget.innerText.toLowerCase() === 'profile') {
+          window.location.href= '/profile/' + sessionStorage.getItem('id');
         } else {
           window.location.href = '/login'; 
         }        

@@ -61,6 +61,7 @@
               if(data) {
                 if(data.msg === 'success') {
                   sessionStorage.setItem("user", true);
+                  sessionStorage.setItem("id", data.id);
                   window.location.href = '/profile/' + data.id;
                 } else {
                   // $('#loginForm').find('input').val('');
